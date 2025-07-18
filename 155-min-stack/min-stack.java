@@ -1,9 +1,9 @@
 class MinStack {
     Stack<Integer> st=new Stack<>();
     Stack<Integer> min=new Stack<>();
+
     public MinStack() {
-        // constructur
-        //no use for any case
+        //
     }
     
     public void push(int val) {
@@ -28,11 +28,11 @@ class MinStack {
     }
     
     public int top() {
-       return  st.peek();
+        return st.peek();
     }
     
     public int getMin() {
-       return  min.peek();
+        return min.peek();
     }
 }
 
