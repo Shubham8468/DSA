@@ -4,11 +4,12 @@ class Solution {
         Stack<Integer> st=new Stack<>();
         int[] pse=new int[n];
         int[] nse=new int[n];
-        //for the next smaller items
+        //first we find the next smaller item forme the arr;
+        //we find the small items frome the arr
         st.push(n-1);
         nse[n-1]=n;
         for(int i=n-2;i>=0;i--){
-            while(st.size()>0&&heights[st.peek()]>=heights[i]){
+            while(st.size()>0 && heights[st.peek()]>=heights[i]){
                 st.pop();
             }
             if(st.size()==0){
@@ -19,15 +20,18 @@ class Solution {
             }
             st.push(i);
         }
-        //we clear the stack
-         while(st.size()>0){
+        //we clear our stack;
+        while(st.size()>0){
             st.pop();
         }
-        pse[0]=-1;
+        //let we find the prevoius small items 
         st.push(0);
-        for(int i=1;i<=n-1;i++){
+        pse[0]=-1;
+        for(int i=1;i<n;i++){
             while(st.size()>0 && heights[st.peek()]>=heights[i]){
+                //if(st.size()==0)break;
                 st.pop();
+                
             }
             if(st.size()==0){
                 pse[i]=-1;
@@ -37,13 +41,19 @@ class Solution {
             }
             st.push(i);
         }
-        int max=-1;
-        for(int i=0;i<n;i++){
+
+
+         int max=-1;
+         for(int i=0;i<n;i++){
             int area=heights[i]*(nse[i]-pse[i]-1);
             max=Math.max(max,area);
-        }
+         }
+          return max;
 
-        return max;
+    
+        
 
+
+        
     }
 }
