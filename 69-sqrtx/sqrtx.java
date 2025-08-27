@@ -7,8 +7,8 @@ class Solution {
             }
             root=i;
         }
-        int  ans=(int ) root;
-        return ans;
+        
+        return (int ) root;
         
 
     }
