@@ -11,26 +11,25 @@ class Solution {
         if(arr[n-2]!=arr[n-1]){
             return arr[n-1];
         }
-        
         while(lo<=hi){
-            int mid=(lo+hi)/2;
+            int mid=lo+(hi-lo)/2;
             if(arr[mid]!=arr[mid-1] && arr[mid]!=arr[mid+1]){
                 return arr[mid];
             }
-            int f=mid,s=mid;
-            if(arr[mid-1]==arr[f]){
+            int s=mid,f=mid;
+            if(arr[mid]==arr[mid-1]){
                 f=mid-1;
             }
             else{
                 s=mid+1;
             }
             int leftCount=f-lo;
-            int rightCount=hi-s;
+            
             if(leftCount%2==0){
                 lo=s+1;
             }
             else{
-                hi=f-1;
+                hi=s-1;
             }
         }
         return 0;
