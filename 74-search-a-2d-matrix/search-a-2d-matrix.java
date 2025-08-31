@@ -11,7 +11,7 @@ class Solution {
             if(arr[midrow][midcol]==tar){
                 return true;
             }
-            else if (arr[midrow][midcol]>tar){
+            else if(arr[midrow][midcol]>tar){
                 hi=mid-1;
             }
             else{
@@ -19,6 +19,5 @@ class Solution {
             }
         }
         return false;
-        
     }
 }
