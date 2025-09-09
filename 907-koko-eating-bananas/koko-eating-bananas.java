@@ -1,10 +1,8 @@
 class Solution {
     public int maxnum(int[] arr){
         int max=-1;
-        for(int i=0;i<arr.length;i++){
-            if(max<arr[i]){
-                max=arr[i];
-            }
+        for(int r:arr){
+            max=Math.max(max,r);
         }
         return max;
     }
