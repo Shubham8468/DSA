@@ -13,12 +13,12 @@ class Solution {
         ListNode p=l1,q=l2;
         ListNode ans=new ListNode(0);
         ListNode curr=ans;
-        int valu=0;
+        int valu;
         int carry=0;
-        while(p!=null || q!=null || carry !=0){
-            int lData=(p==null)?0 :p.val;
-            int l2Data=(q==null)?0 : q.val;
-            valu=lData+l2Data+carry;
+        while(p!=null || q!=null || carry!=0){
+            int l1Data=(p==null)?0 :p.val;
+            int l2Data=(q==null)?0 :q.val;
+            valu=l1Data+l2Data+carry;
             ListNode temp=new ListNode(valu%10);
             curr.next=temp;
             curr=temp;
@@ -29,6 +29,7 @@ class Solution {
             if(q!=null){
                 q=q.next;
             }
+
 
         }
         return ans.next;
