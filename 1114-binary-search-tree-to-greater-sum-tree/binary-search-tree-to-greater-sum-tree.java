@@ -14,25 +14,16 @@
  * }
  */
 class Solution {
-    public void Revinorder(TreeNode root, ArrayList<TreeNode> arr ){
-        if(root==null){
-            return ;
-        }
-        Revinorder(root.right,arr);
-        arr.add(root);
-        Revinorder(root.left,arr);
-    }
+    int sum=0;
     public TreeNode bstToGst(TreeNode root) {
-        ArrayList<TreeNode> arr=new ArrayList<>();
-        Revinorder(root,arr);
-        
-        int sum=0;
-        for(int i=0;i<arr.size();i++){
-             int temp=arr.get(i).val;
-             arr.get(i).val+=sum;
-             sum+=temp;
+        if(root==null){
+            return root;
         }
+        bstToGst(root.right);
+        int value=root.val;
+        root.val+=sum;
+        sum+=value;
+        bstToGst(root.left);
         return root;
-        
     }
 }
