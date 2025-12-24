@@ -31,19 +31,18 @@ class Solution {
         if(head.next==null){
             return new TreeNode(head.val);
         }
-        //Find mid node of ll;
+        ListNode prev=head;
         ListNode slow=head;
-        ListNode fast=head.next.next;
+        ListNode fast=head;
         while(fast!=null && fast.next!=null){
+            prev=slow;
             slow=slow.next;
             fast=fast.next.next;
         }
-        TreeNode ans=new TreeNode(slow.next.val);
-        ListNode rightList=slow.next.next;
-        slow.next=null;
-        ans.left=sortedListToBST(head);
-        ans.right=sortedListToBST(rightList);
-        return ans;
-        
+        prev.next=null;
+        TreeNode root=new TreeNode(slow.val);
+        root.left= sortedListToBST(head);
+        root.right= sortedListToBST(slow.next);
+        return root;
     }
 }
