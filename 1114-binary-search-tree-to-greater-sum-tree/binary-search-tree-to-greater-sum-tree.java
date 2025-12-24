@@ -14,18 +14,18 @@
  * }
  */
 class Solution {
-    public void inorder(TreeNode root, ArrayList<TreeNode> arr ){
+    public void Revinorder(TreeNode root, ArrayList<TreeNode> arr ){
         if(root==null){
             return ;
         }
-        inorder(root.left,arr);
+        Revinorder(root.right,arr);
         arr.add(root);
-        inorder(root.right,arr);
+        Revinorder(root.left,arr);
     }
     public TreeNode bstToGst(TreeNode root) {
         ArrayList<TreeNode> arr=new ArrayList<>();
-        inorder(root,arr);
-        Collections.reverse(arr);
+        Revinorder(root,arr);
+        
         int sum=0;
         for(int i=0;i<arr.size();i++){
              int temp=arr.get(i).val;
