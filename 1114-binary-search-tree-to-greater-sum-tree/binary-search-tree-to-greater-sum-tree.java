@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public void inorder(TreeNode root,ArrayList<TreeNode> arr){
+    public void inorder(TreeNode root, ArrayList<TreeNode> arr ){
         if(root==null){
             return ;
         }
@@ -28,10 +28,11 @@ class Solution {
         Collections.reverse(arr);
         int sum=0;
         for(int i=0;i<arr.size();i++){
-            int value = arr.get(i).val;
-            arr.get(i).val +=sum;
-            sum+=value;
+             int temp=arr.get(i).val;
+             arr.get(i).val+=sum;
+             sum+=temp;
         }
         return root;
+        
     }
 }
