@@ -95,16 +95,7 @@ class MyLinkedList {
     size--;
         
     }
-    public void deleteAtEnd(int index){
-      Node temp=head;
-      while(temp.next!=null){
-        temp=temp.next;
-      }
-      temp.next=null;
-      tail=temp;
-      size--;
-      return ;
-    }
+    
 }
 
 /**
