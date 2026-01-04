@@ -15,17 +15,32 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> ans=new ArrayList<>();
-        helper(root, ans);
-        return ans;
-    }
-    public List<Integer> helper(TreeNode root, List<Integer> ans){
-        if(root==null){
-            return null;
+        List<Integer> ans = new ArrayList<>();
+        TreeNode curr = root;
+
+        while (curr != null) {
+            if (curr.left == null) {
+                ans.add(curr.val);
+                curr = curr.right;
+            } else {
+                // Find inorder predecessor
+                TreeNode pred = curr.left;
+                while (pred.right != null && pred.right != curr) {
+                    pred = pred.right;
+                }
+
+                if (pred.right == null) {
+                    // Create thread
+                    pred.right = curr;
+                    curr = curr.left;
+                } else {
+                    // Remove thread and visit
+                    pred.right = null;
+                    ans.add(curr.val);
+                    curr = curr.right;
+                }
+            }
         }
-        helper(root.left, ans);
-        ans.add(root.val);
-        helper(root.right,ans);
         return ans;
     }
 }
