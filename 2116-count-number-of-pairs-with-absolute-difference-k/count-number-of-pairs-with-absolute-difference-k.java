@@ -2,13 +2,7 @@ class Solution {
     public int countKDifference(int[] arr, int k) {
       HashMap<Integer,Integer> map=new HashMap<>();
       for(int ele : arr){
-        if(map.containsKey(ele)){
-            int freq=map.get(ele);
-            map.put(ele,freq+1);
-        }
-        else{
-            map.put(ele,1);
-        }
+        map.put(ele,map.getOrDefault(ele,0)+1);
       }
       int pairs=0;
       for(int ele : map.keySet()){
