@@ -3,7 +3,7 @@ class Solution {
       vist[i]=true;
       for(int j= 0;j<n;j++){
         if(ajt[i][j]==1 && !vist[j]){
-            bfs(j,ajt,vist,n);
+            bfs(j,ajt,vist,n);// this the the recursion method for the sovle this problem
         }
       }
     }
