@@ -12,17 +12,12 @@ class Solution {
         return true;
     }
     public void bfs(int start, List<List<Integer>> adj, boolean[] vist){
-        Queue<Integer> q= new LinkedList<>();
-        q.add(start);
-        while (!q.isEmpty()){
-            int front=q.remove();
-            for(int ele : adj.get(front)){
-                if(!vist[ele]){
-                    q.add(ele);
-                    vist[ele]=true;
-                }
-            }
+       for(int ele: adj.get(start)){
+        if(!vist[ele]){
+            vist[ele]=true;
+            bfs(ele,adj,vist);
         }
+       }
 
     }
 }
