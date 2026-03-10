@@ -1,5 +1,5 @@
 class Solution {
-        class Pair{
+   class Pair{
         int row;
         int col;
         Pair(int row,int col){
@@ -64,4 +64,4 @@ class Solution {
         }
         return count;
         }
-} 
+}
