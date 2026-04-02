@@ -1,34 +1,25 @@
-class Node {
-    int val;
-    int min;
-    Node (int val,int min){
-        this.val=val;
-        this.min=min;
-    }
-}
-
 class MinStack {
-    Stack<Node> st;
-
-
+    Stack<Integer> st;
+    Stack<Integer> min;
     public MinStack() {
-        st=new Stack(); 
+        st= new Stack<>();
+        min=new Stack<>();   
     }
     
     public void push(int val) {
         if(st.isEmpty()){
-            st.push(new Node(val,val));
-            return ;
-        }
-       Node stPNode=st.peek();
-        int stMin=stPNode.min;
-        if(stMin < val){
-            st.push(new Node(val,stMin));
+            st.push(val);
+            min.push(val);
+            return;
         }
         else{
-            st.push(new Node(val,val));
+            st.push(val);
+            if(st.peek() <=min.peek()){
+                min.push(val);
+                return ;
+            }
+            return ;
         }
-        return ;
         
     }
     
@@ -36,14 +27,22 @@ class MinStack {
         if(st.isEmpty()){
             return ;
         }
-        st.pop();
+        else{
+           int val= st.pop();
+            if(val==min.peek()){
+                min.pop();
+                return ;
+            }
+            return ;
+        }
+        
     }
     
     public int top() {
         if(st.isEmpty()){
             return -1;
         }
-        return st.peek().val;
+        return st.peek();
         
     }
     
@@ -51,7 +50,8 @@ class MinStack {
         if(st.isEmpty()){
             return -1;
         }
-        return st.peek().min;
+        return min.peek();
+
         
     }
 }
