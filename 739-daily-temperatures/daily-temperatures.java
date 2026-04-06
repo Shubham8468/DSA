@@ -1,5 +1,19 @@
-class Solution { public int[] dailyTemperatures(int[] temperatures) { int n = temperatures.length; int[] ans = new int[n]; Deque<Integer> stack = new ArrayDeque<>(); // monotonic decreasing stack of indices
- for (int i = 0; i < n; i++) { // Current temp is warmer → resolve all colder days waiting in the stack 
- while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) { int prevIdx = stack.pop(); ans[prevIdx] = i - prevIdx; // days waited for a warmer temperature
-  } stack.push(i); } // Remaining indices in stack → no warmer future day → ans[i] stays 0 
-  return ans; } }
+class Solution {
+   public int[] dailyTemperatures(int[] temperatures) {
+        //[73,74,75,71,69,72,76,73]
+        int n= temperatures.length;
+        int[] ans= new int[n];
+        Stack<Integer> st= new Stack<>(); // we store idx only 
+        for(int i=n-1;i>=0;i--){
+            while(!st.isEmpty() && temperatures[st.peek()] <= temperatures[i]){
+                st.pop();
+            }
+            if(!st.isEmpty()){ // here we find the next greter
+                ans[i]=st.peek()-i;
+            }
+            st.push(i);
+
+        }
+        return ans;
+    }
+}
