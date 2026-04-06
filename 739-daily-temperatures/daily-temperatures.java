@@ -1,19 +1,19 @@
 class Solution {
-   public int[] dailyTemperatures(int[] temperatures) {
-        //[73,74,75,71,69,72,76,73]
-        int n= temperatures.length;
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n=temperatures.length;
         int[] ans= new int[n];
-        Stack<Integer> st= new Stack<>(); // we store idx only 
+        Stack<Integer> st= new Stack<>();
         for(int i=n-1;i>=0;i--){
-            while(!st.isEmpty() && temperatures[st.peek()] <= temperatures[i]){
+            while(!st.isEmpty() && temperatures[i]>=temperatures[st.peek()]){
                 st.pop();
             }
-            if(!st.isEmpty()){ // here we find the next greter
+            if(!st.isEmpty()){
                 ans[i]=st.peek()-i;
             }
             st.push(i);
 
         }
         return ans;
+        
     }
 }
