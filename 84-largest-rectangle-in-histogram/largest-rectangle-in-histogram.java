@@ -1,59 +1,49 @@
 class Solution {
-    public int largestRectangleArea(int[] heights) {
+   public int largestRectangleArea(int[] heights) {
+        // fins psm && nsm
         int n=heights.length;
-        Stack<Integer> st=new Stack<>();
-        int[] pse=new int[n];
-        int[] nse=new int[n];
-        //first we find the next smaller item forme the arr;
-        //we find the small items frome the arr
-        st.push(n-1);
-        nse[n-1]=n;
-        for(int i=n-2;i>=0;i--){
-            while(st.size()>0 && heights[st.peek()]>=heights[i]){
+        int[] nsm= new int[n];
+        int[] psm=new int[n];
+        Stack<Integer> st= new Stack<>();
+        // For the next smallest
+        for(int i=n-1;i>=0;i--){
+            while (!st.isEmpty() && heights[st.peek()] >= heights[i]){
                 st.pop();
             }
-            if(st.size()==0){
-                nse[i]=n;
+            if(st.isEmpty()){
+                nsm[i]=n;
             }
-            else{
-                nse[i]=st.peek();
+            else {
+                nsm[i]=st.peek();
             }
             st.push(i);
         }
-        //we clear our stack;
-        while(st.size()>0){
+        // NOw we find psm
+        // fist Empty stack
+        while (!st.isEmpty()){
             st.pop();
         }
-        //let we find the prevoius small items 
-        st.push(0);
-        pse[0]=-1;
-        for(int i=1;i<n;i++){
-            while(st.size()>0 && heights[st.peek()]>=heights[i]){
-                //if(st.size()==0)break;
+        for(int i=0;i<n;i++){
+            while(!st.isEmpty() && heights[st.peek()] >= heights[i]){
                 st.pop();
-                
             }
-            if(st.size()==0){
-                pse[i]=-1;
+            if(st.isEmpty()){
+                psm[i]=-1;
             }
             else{
-                pse[i]=st.peek();
+                psm[i]=st.peek();
             }
             st.push(i);
         }
 
-
-         int max=-1;
-         for(int i=0;i<n;i++){
-            int area=heights[i]*(nse[i]-pse[i]-1);
-            max=Math.max(max,area);
-         }
-          return max;
-
-    
-        
+        int largest=-1;
+        for(int i=0;i<n;i++){
+            int area= heights[i] *(nsm[i]-psm[i]-1);
+            largest=Math.max(largest,area);
+        }
+        return largest;
 
 
-        
     }
+
 }
