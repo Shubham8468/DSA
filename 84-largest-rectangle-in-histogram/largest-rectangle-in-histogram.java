@@ -1,6 +1,7 @@
 class Solution {
    public int largestRectangleArea(int[] heights) {
-        // fins psm && nsm
+        // find psn -> Previous Smaller Element
+        // find nsm -> Next Smaller Element
         int n=heights.length;
         int[] nse= new int[n];
         int[] pse=new int[n];
@@ -18,7 +19,7 @@ class Solution {
             }
             st.push(i);
         }
-        // NOw we find psm
+        // NOw we find pse
         // fist Empty stack
         while (!st.isEmpty()){
             st.pop();
