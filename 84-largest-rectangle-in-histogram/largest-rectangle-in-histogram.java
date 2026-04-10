@@ -2,8 +2,8 @@ class Solution {
    public int largestRectangleArea(int[] heights) {
         // fins psm && nsm
         int n=heights.length;
-        int[] nsm= new int[n];
-        int[] psm=new int[n];
+        int[] nse= new int[n];
+        int[] pse=new int[n];
         Stack<Integer> st= new Stack<>();
         // For the next smallest
         for(int i=n-1;i>=0;i--){
@@ -11,10 +11,10 @@ class Solution {
                 st.pop();
             }
             if(st.isEmpty()){
-                nsm[i]=n;
+                nse[i]=n;
             }
             else {
-                nsm[i]=st.peek();
+                nse[i]=st.peek();
             }
             st.push(i);
         }
@@ -28,17 +28,17 @@ class Solution {
                 st.pop();
             }
             if(st.isEmpty()){
-                psm[i]=-1;
+                pse[i]=-1;
             }
             else{
-                psm[i]=st.peek();
+                pse[i]=st.peek();
             }
             st.push(i);
         }
 
         int largest=-1;
         for(int i=0;i<n;i++){
-            int area= heights[i] *(nsm[i]-psm[i]-1);
+            int area= heights[i] *(nse[i]-pse[i]-1);
             largest=Math.max(largest,area);
         }
         return largest;
