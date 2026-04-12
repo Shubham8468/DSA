@@ -1,15 +1,10 @@
 class MyStack {
     Queue<Integer> q= new LinkedList<>();
-
-    public MyStack() {
-        
+    public MyStack() {    
     }
-    
     public void push(int x) {
-        q.add(x);
-        
+        q.add(x);  
     }
-    
     public int pop() {
         if(q.size()==0){
             return -1;
