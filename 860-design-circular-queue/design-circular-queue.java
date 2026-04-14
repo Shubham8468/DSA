@@ -10,7 +10,7 @@ class MyCircularQueue {
     }
     
     public boolean enQueue(int value) {
-        if(isFull()){
+        if(count==maxSize){
             return false;
         }
         arr[(head+count)%maxSize]=value;
@@ -19,7 +19,7 @@ class MyCircularQueue {
     }
     
     public boolean deQueue() {
-        if(isEmpty()){
+        if(count==0){
             return false;
         }
         head=(head+1)%maxSize;
@@ -29,7 +29,7 @@ class MyCircularQueue {
     }
     
     public int Front() {
-        if(isEmpty()){
+        if(count==0){
             return -1;
         }
         return arr[head];
@@ -37,7 +37,7 @@ class MyCircularQueue {
     }
     
     public int Rear() {
-        if(isEmpty()){
+        if(count==0){
             return -1;
         }
         return arr[(head+count-1)% maxSize];
