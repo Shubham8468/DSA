@@ -14,21 +14,20 @@
  * }
  */
 class Solution {
-    int sum=0;
-    public void helper(TreeNode root,int path){
+    public void helper(TreeNode root,int path,int[] sum){
         if(root==null){
             return ;
         }
         path=path*10 +root.val;
         if(root.left==null && root.right==null){
-            sum+=path;
+            sum[0]+=path;
         }
-        helper(root.left,path);
-        helper(root.right,path);
+        helper(root.left,path,sum);
+        helper(root.right,path,sum);
     }
     public int sumNumbers(TreeNode root) {
-
-        helper(root,0);
-        return sum;
+        int[] sum={0};
+        helper(root,0,sum);
+        return sum[0];
     }
 }
