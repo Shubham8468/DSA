@@ -32,6 +32,7 @@ class Solution {
             for(int i=1;i<=size;i++){
                 Node temp=q.remove();
                 temp.next=pre;
+                pre=temp;
               
                 if(temp.right!=null){
                     q.add(temp.right);
@@ -39,12 +40,11 @@ class Solution {
                 if(temp.left!=null){
                     q.add(temp.left);
                 } 
-                  pre=temp;
+                 
             }
-            
 
         }
         return root;
-        
+     
     }
 }
