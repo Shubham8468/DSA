@@ -14,49 +14,21 @@
  * }
  */
 class Solution {
-   public class Pair{
-TreeNode root;
-boolean isLeft;
-Pair(TreeNode root, boolean isLeft){
-this.root=root;
-this.isLeft=isLeft;
-}
-}
-public int sumOfLeftLeaves(TreeNode root) {
-if(root==null){
-return 0;
-}
+     public int sumOfLeftLeaves(TreeNode root) {
+       if(root==null) return 0;
+       Queue<TreeNode>que=new LinkedList<>();
+       que.add(root);
+       int sum=0;
 
+       while(!que.isEmpty()){
+          TreeNode curr=que.poll();
+          if(curr.left!=null){
+             if(curr.left.left==null && curr.left.right==null)sum+=curr.left.val;
+             que.add(curr.left);
+          }
+          if(curr.right!=null)que.add(curr.right);
+       }
 
-return bfs(root);
-
-
-}
-public int bfs(TreeNode root){
-Queue<Pair> q=new LinkedList<>();
-int sum=0;
-q.add(new Pair(root,false));
-while (!q.isEmpty()){
-int size=q.size();
-for (int i = 1; i <=size ; i++) {
-Pair temp=q.poll();
-TreeNode node=temp.root;
-int item= temp.root.val;
-if(temp.isLeft && node.left==null && node.right==null){
-sum+=item;
-}
-if(node.right!=null){
-q.add(new Pair(node.right,false));
-}
-if(node.left!=null){
-q.add(new Pair(node.left,true));
-}
-
-
-}
-}
-return sum;
-}
-
-
+       return sum;
+    }
 }
