@@ -36,7 +36,6 @@ class Solution {
                     q.add(temp.right);
                 }
             }
-
          }
 
         return ans;
