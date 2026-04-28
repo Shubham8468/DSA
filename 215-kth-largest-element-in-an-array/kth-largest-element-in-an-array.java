@@ -5,8 +5,8 @@ class Solution {
             pq.add(ele);
             if(pq.size() > k){
                 pq.remove();
-            }
-        } 
+        }
+        }
         return pq.peek();
     }
 }
