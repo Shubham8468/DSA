@@ -1,34 +1,34 @@
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
-        int row=mat.length,
-        col=mat[0].length;
-        List<int[]> list=new ArrayList<>();
-        for(int i=0;i<row;i++){
-            int soldires=0;
-            for(int j=0;j<col;j++){
-                if(mat[i][j]==0){
-                    break;
-                }
-                soldires+=1;
+        int[] result=new int[k];
+        int rows=mat.length;
+        int cols=mat[0].length;
+      PriorityQueue<int[]> pq = new PriorityQueue<>((e1,e2)->{
+        if(e1[0]-e2[0]==0){
+            // it this case we compaire with indexes
+            return e2[1]-e1[1];
+        }
+        return e2[0]-e1[0];
+      });
+        for(int row=0;row<rows;row++){
+            int sol=0;
+            for(int col=0;col<cols;col++){
+              if(mat[row][col]==0){
+                break;
+              }
+              sol=sol+1;
             }
-            list.add(new int [] {
-                soldires,
-                i
+            pq.add(new int[] {
+                sol,
+                row
             });
         }
-        // app list ko short krna tha on the bassase of number of soldires
-        Collections.sort(list, (e1,e2)-> {
-            if(e1[0]==e2[0]){  // in case soldires quals ho to index ke base pe short krna hai
-                return e1[1]-e2[1];
-            }
-            return e1[0]-e2[0];
-        });
-        
-        // list short ho gyi hai ab bs return kr to k thk
-        int[] res= new int[k];
-        for(int i=0;i<k;i++){
-            res[i]=list.get(i)[1];
+        while(pq.size()>k){
+          pq.poll();
         }
-        return res;
+        for(int i=k-1;i>=0;i--){
+            result[i]=pq.poll()[1];
+        }
+        return result;
     }
 }
