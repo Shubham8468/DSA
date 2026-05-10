@@ -10,9 +10,9 @@ class Solution {
 
     for (int i = 1; i <= k; i++) {
         int top = pq.poll();
-        int remove = top / 2;   // how many stones to remove
+        int remove = top / 2;  
         sum -= remove;
-        pq.offer(top - remove); // put back remaining stones
+        pq.offer(top - remove);
     }
 
     return sum;
