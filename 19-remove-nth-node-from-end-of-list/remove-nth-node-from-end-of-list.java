@@ -35,9 +35,5 @@ class Solution {
         temp.next=temp.next.next;
         }
         return head;
-      
-
-
-
     }
 }
