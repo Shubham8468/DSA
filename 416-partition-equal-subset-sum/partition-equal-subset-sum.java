@@ -18,10 +18,6 @@ class Solution {
         int take=helper(arr,sum-arr[i],dp,i+1);
         return dp[i][sum]=skip|take;
     }
-
-
-
-
     public boolean canPartition(int[] nums) {
         int sum=0;
         for(int ele: nums){
