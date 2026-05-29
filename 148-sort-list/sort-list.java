@@ -9,57 +9,68 @@
  * }
  */
 class Solution {
-    public ListNode gitmid(ListNode temp){
-        ListNode slow=temp;
-        ListNode fast=temp.next;
-        while(fast!=null && fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
-        }
-        return slow;
-    }
-    public ListNode mergerll(ListNode leftLL,ListNode rightLL){
-        ListNode ans=new ListNode(0);
-        ListNode temp=ans;
-        while(leftLL!=null && rightLL!=null){
-            if(leftLL.val<rightLL.val){
-                temp.next=leftLL;
-                temp=leftLL;
-                leftLL=leftLL.next;
+     public ListNode midI(ListNode head){
+            if(head==null || head.next==null){
+                return head;
             }
-            else{
-                temp.next=rightLL;
-                temp=rightLL;
-                rightLL=rightLL.next;
+            ListNode slow=head,fast=head.next;
+            while (fast!=null && fast.next!=null){
+                fast=fast.next.next;
+                slow=slow.next;
             }
+            return slow;
         }
-        while(leftLL!=null){
-            temp.next=leftLL;
-            temp=leftLL;
-            leftLL=leftLL.next;
+    public ListNode mergeList(ListNode l1, ListNode l2){
+            if(l1==null && l2==null){
+                return l1;
+            }
+            ListNode ans= new ListNode(0);
+            ListNode an=ans,t1=l1,t2=l2;
+            while (t1!=null && t2!=null){
+                if(t1.val<t2.val){
+                    an.next=t1;
+                    an=t1;
+                    t1=t1.next;
+                }else{
+                    an.next=t2;
+                    an=t2;
+                    t2=t2.next;
+                }
+            }
+            if(t1!=null){
+                while (t1!=null){
+                    an.next=t1;
+                    an=t1;
+                    t1=t1.next;
+                }
+            }
+            if(t2!=null){
+                while (t2!=null){
+                    an.next=t2;
+                    an=t2;
+                    t2=t2.next;
+                }
+            }
+            return ans.next;
         }
-        while(rightLL!=null){
-            temp.next=rightLL;
-            temp=rightLL;
-            rightLL=rightLL.next;
-        }
-        return ans.next;
-    }
-    public ListNode meargSort(ListNode temp){
-        if(temp==null || temp.next==null){
-            return temp;
-        }
-      ListNode mid=gitmid(temp);
-      ListNode right=mid.next;
-      mid.next=null;
-      ListNode left=temp;
-      ListNode leftLL=meargSort(left);
-      ListNode rightLL=meargSort(right);
-        return mergerll(leftLL,rightLL);
+        public ListNode sortL(ListNode head){
+            if(head==null || head.next==null){
+                return head;
+            }
+            ListNode midItem=midI(head);
+            ListNode right=midItem.next;
+            midItem.next=null;
+            ListNode left=head;
+            // after this do magic
 
-    }
-    public ListNode sortList(ListNode head) {
-       return  meargSort(head);
-
-    }
+            ListNode l1=sortL(left);
+            ListNode l2=sortL(right);
+            return mergeList(l1,l2);
+        }
+     public ListNode sortList(ListNode head) {
+       if(head==null || head.next==null){
+           return head;
+       }
+       return sortL(head);
+     }
 }
