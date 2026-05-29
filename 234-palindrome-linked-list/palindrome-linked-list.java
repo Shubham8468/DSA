@@ -9,6 +9,7 @@
  * }
  */
 class Solution {
+      
     public boolean isPalindrome(ListNode head) {
         ListNode temp= head;
         Stack<Integer> st= new Stack<>();
